@@ -23,16 +23,12 @@ export function Post() {
 
 			<div className={styles.content}>
 				<p>Fala galeraaa</p>
+				<p>O Pedro voltou!!!</p>
 				<p>
-					Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-					no NLW Return, evento da RocketSeat. O nome do projeto é DoctorCare!
+					<a>github.com/guibbers</a>
 				</p>
 				<p>
-					<a href="">guibbers.design/doctorcare</a>
-				</p>
-				<p>
-					<a href="">#novoprojeto</a> <a href="">#nlw</a>{' '}
-					<a href="">#rocketseat</a>
+					<a>#novoprojeto</a> <a>#nlw</a> <a>#rocketseat</a>
 				</p>
 			</div>
 		</article>
