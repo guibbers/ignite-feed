@@ -25,12 +25,21 @@ export function Post() {
 				<p>Fala galeraaa</p>
 				<p>O Pedro voltou!!!</p>
 				<p>
-					<a>github.com/guibbers</a>
+					<a href="#">github.com/guibbers</a>
 				</p>
 				<p>
-					<a>#novoprojeto</a> <a>#nlw</a> <a>#rocketseat</a>
+					<a href="#">#novoprojeto</a> <a href="#">#nlw</a>{' '}
+					<a href="#">#rocketseat</a>
 				</p>
 			</div>
+
+			<form className={styles.commentForm}>
+				<strong>Deixe seu feedback</strong>
+				<textarea placeholder="Deixe um comentário" />
+				<footer>
+					<button type="submit">Comentar</button>
+				</footer>
+			</form>
 		</article>
 	);
 }
