@@ -17,7 +17,7 @@ const posts = [
 			{ type: 'paragraph', content: 'O Pedro voltou!!!' },
 			{ type: 'link', content: 'github.com/guibbers' },
 		],
-		publishedAt: new Date('2024-04-25 00:00:01'),
+		publishedAt: new Date('2025-04-25 00:00:01'),
 	},
 
 	{
@@ -33,7 +33,7 @@ const posts = [
 			{ type: 'paragraph', content: 'Eu amo muito o gui' },
 			{ type: 'link', content: 'gui.com' },
 		],
-		publishedAt: new Date('2024-04-24 00:00:01'),
+		publishedAt: new Date('2025-04-24 00:00:01'),
 	},
 ];
 
@@ -48,6 +48,7 @@ function App() {
 					{posts.map((post) => {
 						return (
 							<Post
+								key={post.id}
 								author={post.author}
 								content={post.content}
 								publishedAt={post.publishedAt}
