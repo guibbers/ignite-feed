@@ -1,10 +1,33 @@
 import { format, formatDistanceToNow } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { ptBR } from 'date-fns/locale/pt-BR';
+import { useState } from 'react';
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css';
 
-export function Post({ author, content, publishedAt } = props) {
+// TYPES -----------------------------------------------------------
+
+type props = {
+	author: Author;
+	content: ContentLine[];
+	publishedAt: Date;
+};
+
+type ContentLine = {
+	type: 'paragraph' | 'link';
+	content: string;
+};
+
+type Author = {
+	avatarUrl: string;
+	name: string;
+	role: string;
+};
+
+// ---------------------------------------------------------------------------
+
+export function Post({ author, content, publishedAt }: props) {
+	// ----------------------- CONSTANTS AND VARIABLES -------------------------
 	const publishedDateFormatted = format(
 		publishedAt,
 		"d 'de' LLLL à's' HH:mm'h'",
@@ -16,11 +39,32 @@ export function Post({ author, content, publishedAt } = props) {
 		addSuffix: true,
 	});
 
+	const [comments, setComments] = useState([
+		{ id: 1, content: 'Muito bom!' },
+		{ id: 2, content: 'Isso aí!' },
+		{ id: 3, content: 'Parabéns.' },
+	]);
+
+	// -------------------------------------------------------------------------
+
+	// ------------------------------ FUNCTIONS --------------------------------
+
+	function handleCreateNewComment(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		setComments([
+			...comments,
+			{ id: comments.length + 1, content: 'Outro comentário' },
+		]);
+		console.log(comments);
+	}
+
+	// -------------------------------------------------------------------------
+
 	return (
 		<article className={styles.post}>
 			<header>
 				<div className={styles.author}>
-					<Avatar src={author.avatarUrl} alt="" />
+					<Avatar src={author.avatarUrl} />
 					<div className={styles.authorInfo}>
 						<strong>{author.name}</strong>
 						<span>{author.role}</span>
@@ -44,7 +88,11 @@ export function Post({ author, content, publishedAt } = props) {
 					if (line.type === 'link') {
 						return (
 							<p>
-								<a target="_blank" rel="noreferrer">
+								<a
+									href="http://localhost:3000"
+									target="_blank"
+									rel="noreferrer"
+								>
 									{line.content}
 								</a>
 							</p>
@@ -53,7 +101,7 @@ export function Post({ author, content, publishedAt } = props) {
 				})}
 			</div>
 
-			<form className={styles.commentForm}>
+			<form onSubmit={handleCreateNewComment} className={styles.commentForm}>
 				<strong>Deixe seu feedback</strong>
 				<textarea placeholder="Deixe um comentário" />
 				<footer>
@@ -62,7 +110,9 @@ export function Post({ author, content, publishedAt } = props) {
 			</form>
 
 			<div className={styles.commentList}>
-				<Comment />
+				{comments.map((comment) => {
+					return <Comment key={comment.id} content={comment.content} />;
+				})}
 			</div>
 		</article>
 	);

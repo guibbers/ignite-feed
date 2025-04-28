@@ -4,6 +4,11 @@ import { Header } from './components/Header';
 import { Post } from './components/Post';
 import { Sidebar } from './components/Sidebar';
 
+type ContentLine = {
+	type: 'paragraph' | 'link';
+	content: string;
+};
+
 const posts = [
 	{
 		id: 1,
@@ -16,7 +21,7 @@ const posts = [
 			{ type: 'paragraph', content: 'Fala galeraaa' },
 			{ type: 'paragraph', content: 'O Pedro voltou!!!' },
 			{ type: 'link', content: 'github.com/guibbers' },
-		],
+		] as ContentLine[],
 		publishedAt: new Date('2025-04-25 00:00:01'),
 	},
 
@@ -32,7 +37,7 @@ const posts = [
 			{ type: 'paragraph', content: 'Oi, gente!' },
 			{ type: 'paragraph', content: 'Eu amo muito o gui' },
 			{ type: 'link', content: 'gui.com' },
-		],
+		] as ContentLine[],
 		publishedAt: new Date('2025-04-24 00:00:01'),
 	},
 ];
