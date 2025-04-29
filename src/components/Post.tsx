@@ -27,7 +27,7 @@ type Author = {
 // ---------------------------------------------------------------------------
 
 export function Post({ author, content, publishedAt }: props) {
-	// ----------------------- CONSTANTS AND VARIABLES -------------------------
+	// ----------------------- CONSTANTS AND VARIABLES AND STATES -------------------------
 	const publishedDateFormatted = format(
 		publishedAt,
 		"d 'de' LLLL à's' HH:mm'h'",
@@ -39,11 +39,8 @@ export function Post({ author, content, publishedAt }: props) {
 		addSuffix: true,
 	});
 
-	const [comments, setComments] = useState([
-		{ id: 1, content: 'Muito bom!' },
-		{ id: 2, content: 'Isso aí!' },
-		{ id: 3, content: 'Parabéns.' },
-	]);
+	const [comments, setComments] = useState([{}]);
+	const [newCommentTest, setNewCommentText] = useState('');
 
 	// -------------------------------------------------------------------------
 
@@ -51,13 +48,22 @@ export function Post({ author, content, publishedAt }: props) {
 
 	function handleCreateNewComment(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+
+		const newComment = e.target.comment.value;
+
 		setComments([
 			...comments,
-			{ id: comments.length + 1, content: 'Outro comentário' },
+			{ id: comments.length + 1, content: newComment },
 		]);
+
+		setNewCommentText('');
+
 		console.log(comments);
 	}
 
+	function handleNewCommentChange(e) {
+		setNewCommentText(e.target.value);
+	}
 	// -------------------------------------------------------------------------
 
 	return (
@@ -103,7 +109,12 @@ export function Post({ author, content, publishedAt }: props) {
 
 			<form onSubmit={handleCreateNewComment} className={styles.commentForm}>
 				<strong>Deixe seu feedback</strong>
-				<textarea placeholder="Deixe um comentário" />
+				<textarea
+					onChange={handleNewCommentChange}
+					value={newCommentTest}
+					placeholder="Deixe um comentário"
+					name="comment"
+				/>
 				<footer>
 					<button type="submit">Comentar</button>
 				</footer>
