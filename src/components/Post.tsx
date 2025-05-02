@@ -88,12 +88,12 @@ export function Post({ author, content, publishedAt }: props) {
 			<div className={styles.content}>
 				{content.map((line) => {
 					if (line.type === 'paragraph') {
-						return <p>{line.content}</p>;
+						return <p key={line.content}>{line.content}</p>;
 					}
 
 					if (line.type === 'link') {
 						return (
-							<p>
+							<p key={line.content}>
 								<a
 									href="http://localhost:3000"
 									target="_blank"
