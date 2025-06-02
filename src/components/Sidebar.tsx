@@ -1,0 +1,22 @@
+import styles from './Sidebar.module.css';
+
+export function Sidebar() {
+	return (
+		<aside className={styles.sidebar}>
+			<img
+				className={styles.cover}
+				src="https://camo.githubusercontent.com/3498a833333f239e82f553ea976dc9da7bb35d462033ea587c88db8f27f21306/68747470733a2f2f6d656469612e6c6963646e2e636f6d2f646d732f696d6167652f76322f4335363136415147544a4445425132567666512f70726f66696c652d646973706c61796261636b67726f756e64696d6167652d736872696e6b5f3335305f313430302f70726f66696c652d646973706c61796261636b67726f756e64696d6167652d736872696e6b5f3335305f313430302f302f313635323937343736353538353f653d3137353333313532303026763d6265746126743d745f5966464b326f6c4f536b59333466344d32334a39394d4f513344627a696c4f424a5939326e64413167"
+				alt="imagem de cover"
+			/>
+
+			<div className={styles.profile}>
+				<strong>Guilherme Torres</strong>
+				<span>Web Developer</span>
+			</div>
+
+			<footer>
+				<a href="#">Editar seu perfil</a>
+			</footer>
+		</aside>
+	);
+}
